@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:meals/categories_screen.dart';
+import 'package:meals/screens/categories_screen.dart';
+import 'package:meals/screens/category_meals_screen.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  static const double BORDER_RAD = 15;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,7 +32,11 @@ class MyApp extends StatelessWidget {
               ),
             ),
       ),
-      home: CategoriesScreen(),
+      initialRoute: '/', // Default is '/' anyways.
+      routes: {
+        '/': (ctx) => CategoriesScreen(),
+        CategoryMealsScreen.ROUTE_NAME: (ctx) => CategoryMealsScreen(),
+      },
     );
   }
 }
