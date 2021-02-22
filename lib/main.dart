@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals/screens/categories_screen.dart';
 import 'package:meals/screens/category_meals_screen.dart';
+import 'package:meals/screens/meal_detail_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -36,6 +37,22 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (ctx) => CategoriesScreen(),
         CategoryMealsScreen.ROUTE_NAME: (ctx) => CategoryMealsScreen(),
+        MealDetailScreen.ROUTE_NAME: (ctx) => MealDetailScreen(),
+      },
+      onGenerateRoute: (settings) {
+        // Any route that isn't registered...
+
+        print("settings.name:" + settings.name);
+        print("settings.arguments:" + settings.arguments);
+
+        // Can also use a switch statement here with different route names.
+
+        return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
+      },
+      onUnknownRoute: (settings) {
+        // Last resort if both routes and onGenerateRoute is not reached (maybe a 404 message as an idea?)...
+
+        return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
       },
     );
   }
